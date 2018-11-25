@@ -13,10 +13,10 @@ a:hover {
 .btn-default,
 .btn-default:hover,
 .btn-default:focus {
-  color: #333;
+  color: #fff;
   text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: 1px solid #fff;
+  background-color: #1a1a1a;
+  border: 1px solid #1a1a1a;
 }
 
 
@@ -27,10 +27,10 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
+  background-color:#aca6ca;
 }
 body {
-  color: #fff;
+  color: #1a1a1a;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
@@ -62,10 +62,6 @@ body {
 /*
  * Header
  */
-.masthead-brand {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 
 .masthead-nav > li {
   display: inline-block;
@@ -79,7 +75,7 @@ body {
   font-size: 16px;
   font-weight: bold;
   color: #fff; /* IE8 proofing */
-  color: rgba(255,255,255,.75);
+  color: #1a1a1a;
   border-bottom: 2px solid transparent;
 }
 .masthead-nav > li > a:hover,
@@ -113,7 +109,7 @@ body {
   padding: 0 20px;
 }
 .cover .btn-lg {
-  padding: 10px 20px;
+  padding: 11px 35px 11px;
   font-weight: bold;
 }
 
@@ -123,8 +119,8 @@ body {
  */
 
 .mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
+  color: #1a1a1a; /* IE8 proofing */
+  color: #1a1a1a;
 }
 
 
