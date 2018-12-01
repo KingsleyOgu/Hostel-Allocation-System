@@ -1,0 +1,38 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: -10px;
+  padding-bottom: -50px;
+ 
+}
+img{
+	height: 100px;
+	width: 100px;
+	margin: 0 25px;
+}
+h1{
+	font:Verdana, Geneva, sans-serif;
+    font-size:1em;
+    line-height:40px;
+    height:40px;
+    display:block;
+    margin-left:15px;  
+}
+.jumbotron{
+	 background-color: #aab6c4;
+}
+.container{
+	font-size: -115px;
+	
+}
+.container img{
+	float: left;
+}
+/*/////////////////////body*/
+.content{
+	
+	background-color: #eee;
+	margin-top: -40px;
+}
+#content{
+	float: center;
+}
