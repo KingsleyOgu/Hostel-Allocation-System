@@ -1,5 +1,23 @@
+/**** Style for logo and top page*/
+body {
+  padding-top: -10px;
+  padding-bottom: 50px;
+ 
+}
+img{
+	height: 100px;
+	width: 100px;
+	margin: 0 25px;
+}
+.container{
+	font-size: -115px;
+	
+}
+.container img{
+	float: left;
+}
 
-
+/**** BODY*****/
 body{
 	background-color: #aab6c4;
 	color: #2d4b6f;
@@ -13,8 +31,10 @@ body{
 	font-family: "Arial Black","Times New Roman", Times, serif;
 	font-weight: bolder;
 	padding: 15px;
+	color: #fff;
 }
 .sec-1{
+	margin-top: 40px;
 	background-color: #fff;
 }
 .btnstyle{
@@ -28,6 +48,7 @@ body{
 .mastfoot{
 	margin-left: 45%;	
 	padding: 20px;
+	color: #fff;
 }
 .head-1-1{
 	color: #000;
