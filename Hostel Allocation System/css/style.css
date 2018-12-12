@@ -1,0 +1,38 @@
+
+
+body{
+	background-color: #aab6c4;
+	color: #2d4b6f;
+}
+.container{
+	font-family: "Arial Verdana","Times New Roman", Times, serif;
+	font-weight: bolder;
+}
+
+.head{
+	font-family: "Arial Black","Times New Roman", Times, serif;
+	font-weight: bolder;
+	padding: 15px;
+}
+.sec-1{
+	background-color: #fff;
+}
+.btnstyle{
+	margin-left: 45%;
+}
+.btnstyle-1{
+	color: #e04b4b;
+}
+
+/** Fotter stle **/
+.mastfoot{
+	margin-left: 45%;	
+	padding: 20px;
+}
+.head-1-1{
+	color: #000;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 20px;
+	font-weight: bolder;
+	padding: 15px;
+}
