@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+<?php session_start(); ?>
 <?php include "includes\db.php";  ?>
 		
 <!DOCTYPE html>
@@ -40,7 +42,8 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-      	<img src="img/oaulogo.png">
+        <a href="./index.php"><img src="img/oaulogo.png"></a>
+      	
         <h1>Hostel Allocation System</h1>
       </div>
     </div>

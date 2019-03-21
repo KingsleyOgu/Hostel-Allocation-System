@@ -47,7 +47,7 @@
 		<div  class="sec-1">
 		<div class="head-1-1">
 		<p>This sytem is built to allocate hostel to undergraduate student.Student are to Login with their Matric Number and Password or Register if you don't have.</P>
-		<p>The Hostel space is allocated on a first come first serve bases and Preference given to Part1 Student, So all student are encouraged to apply early before the limited space available get exusted.</p>
+		<p>The Hostel space is allocated on a first come first serve bases and preference of 40% given to Part1 Student, So all student are encouraged to apply early before the limited space available get exusted.</p>
 		<p>Student are to pay their hostel fee within two weeks of been allocated or stand the chance of been forfitted to another student.</p>
 		<br>
 		<br>

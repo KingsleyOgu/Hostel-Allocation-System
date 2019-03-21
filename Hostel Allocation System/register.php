@@ -67,23 +67,29 @@ if (isset($_POST['register_user'])) {
       $user_program   = $_POST['user_program'];
       /*$user_role       = $_POST['user_role'];*/
       $user_level   = $_POST['user_level'];
-/*
-      $post_image        = $_FILES['image']['name'];
-      $post_image_temp   = $_FILES['image']['tmp_name'];*/
+      
+      $hashFormat = "$2y$10$";
+      $salt = "iusesomecrazystrings22";
+      $hashFormat_and_salt = $hashFormat . $salt;
+      $user_password = crypt($user_password, $hashFormat_and_salt);
+
+
+      $user_image        = $_FILES['user_image']['name'];
+      $user_image_temp   = $_FILES['user_image']['tmp_name'];
        
-     /*  move_uploaded_file($post_image_temp, "../images/$post_image" );*/
+       move_uploaded_file($user_image_temp, "image1/$user_image" );
 
-       $query = "INSERT INTO users(user_reg,user_password,user_firstname, user_lastname,user_department,user_faculty,user_program,user_level ) ";
+       $query = "INSERT INTO users(user_reg,user_password,user_firstname, user_lastname,user_image,user_department,user_faculty,user_program,user_level ) ";
              
-      $query .= "VALUES('{$user_reg}','{$user_password}','{$user_firstname}','{$user_lastname}','{$user_department}','{$user_faculty}','{$user_program}','{$user_level}') "; 
+      $query .= "VALUES('{$user_reg}','{$user_password}','{$user_firstname}','{$user_lastname}','{$user_image}','{$user_department}','{$user_faculty}','{$user_program}','{$user_level}') "; 
       $register_user_query = mysqli_query($connection,$query);  
-
+        echo "<h1>User Created</h1>";
       if(!$register_user_query){
         die("QuERY FAILED". mysqli_error($connection));
       } 
 
 
-    
+ 
   }
 
 
@@ -114,11 +120,9 @@ if (isset($_POST['register_user'])) {
   			</div>
   			<div class="form-group">
    				<label>Password*:</label>
-   				<input type="text" class="form-control"  name="user_password">
+   				<input type="text" class="form-control"  name="user_password" required="required">
 			</div>
-  			<div class="checkbox">
-    			<label><input type="checkbox"> Unmask</label>
-  			</div>
+  			
   		
   	
   		<div>
@@ -128,24 +132,24 @@ if (isset($_POST['register_user'])) {
 		
 			<div class="form-group">
     			<label> First name*</label>
-   		   	 <input type="text" class="form-control"  name="user_firstname">
+   		   	 <input type="text" class="form-control"  name="user_firstname" required="required">
   			</div>
   			<div class="form-group">
     	 		<label>Lastname*</label>
-    			<input type="text" class="form-control"  name="user_lastname">
+    			<input type="text" class="form-control"  name="user_lastname" required="required">
   			</div>
 			<div class="form-group">
     	 		<label>Department*</label>
-    			<input type="text" class="form-control"  name="user_department">
+    			<input type="text" class="form-control"  name="user_department" required="required">
   			</div>
   			<div class="form-group">
     	 		<label>Faculty*</label>
-    		<input type="text" class="form-control"  name="user_faculty">
+    		<input type="text" class="form-control"  name="user_faculty" required="required">
   			</div>
   			
   			<div class="form-group">
   				<label>Current level*</label>
-     	 		<select name="user_level">
+     	 		<select name="user_level" required="required">
     	 			<option value="100">100</option>
     	 			<option value="200">200</option>
     	 			<option value="300">300</option>
@@ -153,13 +157,17 @@ if (isset($_POST['register_user'])) {
     	 			<option value="500">500</option>
     	 		</select>
   			</div>
+        <div class="form-group">
+         <label for="image">Upload Image</label>
+          <input type="file"  name="user_image">
+      </div>
 			<h3>Degree Program</h3>
 		</div>
 		<hr>
 	
 			<div class="form-group">
     	 		<label>Degree program*</label>
-    			<input type="text" class="form-control"  name="user_program">
+    			<input type="text" class="form-control"  name="user_program" required="required">
   			</div>
   		
   	

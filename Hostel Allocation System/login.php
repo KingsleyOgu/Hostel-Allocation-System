@@ -1,7 +1,79 @@
-
 		
 <?php include "includes\portal_header.php";  ?>
 
+
+
+ <?php
+
+if (isset($_POST['submit'])) {
+
+	$user_reg  = $_POST['user_reg'];
+	$user_password  = $_POST['user_password'];
+	$user_reg  = mysqli_real_escape_string($connection, $user_reg);
+	$user_password = mysqli_real_escape_string($connection, $user_password);
+
+
+	$hashFormat = "$2y$10$";
+	$salt = "iusesomecrazystrings22";
+	$hashFormat_and_salt = $hashFormat . $salt;
+	$user_password = crypt($user_password, $hashFormat_and_salt);
+
+	   $query = "SELECT * FROM users WHERE user_reg = '{$user_reg}' ";
+       
+             
+      $select_user_query = mysqli_query($connection,$query);
+
+	
+	while ($row = mysqli_fetch_array($select_user_query)) {
+
+	  $db_user_id  = $row['user_id'];
+      $db_user_reg  = $row['user_reg'];
+      $db_user_password  = $row['user_password'];
+      $db_user_firstname  = $row['user_firstname'];
+      $db_user_lastname   = $row['user_lastname'];
+      $db_user_image   = $row['user_image'];
+      $db_user_department   = $row['user_department'];
+      $db_user_faculty   = $row['user_faculty'];
+      $db_user_program   = $row['user_program'];
+      /*$user_role       = $row['user_role'];*/
+      $db_user_level   = $row['user_level'];
+        
+         }
+         
+
+     if  ($user_reg === $db_user_reg && $user_password === $db_user_password) {
+
+     		$_SESSION['user_id']        = $db_user_id;
+        	$_SESSION['user_reg'] 		= $db_user_reg;
+        	$_SESSION['user_firstname'] = $db_user_firstname;
+        	$_SESSION['user_lastname'] 	= $db_user_lastname;
+        	$_SESSION['user_image'] 	= $db_user_image;
+        	$_SESSION['user_level']	    = $db_user_level;
+        	$_SESSION['user_program']	= $db_user_program;
+        	$_SESSION['user_department']= $db_user_department;
+        	$_SESSION['user_faculty'] 	= $db_user_faculty;
+        	$_SESSION['user_password'] 	= $db_user_password;
+        	
+
+
+
+      	header("Location: profile.php");
+
+        }
+
+        else{
+        	
+        	
+
+        header("Location: response_login.php");
+      
+        }
+
+  }
+
+
+
+   ?>
 
 
     <!-- Body content///////////////// -->
@@ -12,56 +84,20 @@
 						<!-- <h3>Login</h3> -->
 						<div class="col1 login" style="padding-top:30px;padding-bottom:30px">
 							<section id="content">
-								<form action="#" method="POST" name="frmStudent" id="frmStudent">
+								<form action="#" method="post" >
 									<h1 class="center">Login</h1>
 									<div>
-										<input name="user_id" id="username" value="" type="text" placeholder="Student ID Number" required="required">
+										<input name="user_reg" id="username" value="" type="text" placeholder="Student ID Number" required="required">
 									</div>
 									<div>
-										<input name="pswd" type="password" placeholder="Password" required="required" id="password">
-									</div>
-									<div>
-				                          <select name="SessionF" id="SessionF">
-				                          	<option>Select Session</option>
-					                             <option selected="" value="2017">2017/2018</option>
-					                             <option selected="" value="2017">2017/2018</option>
-					                            <option value="2016">2016/2017</option>
-					                            <option value="2016">2016/2017</option>
-					                             <option value="2015">2015/2016</option>
-					                            <option value="2015">2015/2016</option>
-					                             <option value="2014">2014/2015</option>
-					                            <option value="2014">2014/2015</option>
-					                             <option value="2013">2013/2014</option>
-					                             <option value="2013">2013/2014</option>
-					                             <option value="2012">2012/2013</option>
-					                             <option value="2012">2012/2013</option>
-					                             <option value="2011">2011/2012</option>
-					                              <option value="2011">2011/2012</option>
-					                             <option value="2010">2010/2011</option>
-					                             <option value="2010">2010/2011</option>
-					                            <option value="2009">2009/2010</option>
-					                            <option value="2009">2009/2010</option>
-					                           <option value="2008">2008/2009</option>
-					           				  <option value="2008">2008/2009</option>
-					                           <option value="2007">2007/2008</option>
-					                            <option value="2007">2007/2008</option>
-					                            <option value="2006">2006/2007</option>
-					                            <option value="2006">2006/2007</option>
-					                            
-				                          </select>
-									</div>
-									<div>
-				                          <select name="SemesterF" id="SemesterF">
-				                          	<option>Select Semester</option>
-						                      <option value="1">Harmattan</option>
-						                	<option selected="" value="2">Rain</option>
-						                            
-				                          </select>
+										<input name="user_password" type="password" placeholder="Password" required="required" id="password">
 									</div>
 									
+									
+									
 									<div>
-										<input type="submit" name="Submit" value="Submit">
-										<a href="#">Lost your password?</a>
+										<input type="submit" name="submit" value="submit">
+										
 									</div>
 								</form><!-- form -->
 							</section>

@@ -1,77 +1,245 @@
-
 		
 <?php include "includes\portal_header.php";  ?>
+<?php
+
+if (isset( $_SESSION['user_reg'])) {
+	
 
 
 
-    <body >
-    	<style type="text/css">
-    		.cd{
-	background-color: #f0f5f5;
+  ?>
+<?php
+	
+	$total_bedspace = 5;
+
+if (isset($_POST['submit'])) {
+	
+	$Gender =$_POST['gender'];
+	
+	$user_level = $_SESSION['user_level'];
+
+
+	if ($user_level == 100) {
+		
+		$bedspace_female_100 = ceil($total_bedspace * 0.6);
+	 	$bedspace_male_100 = ceil($total_bedspace * 0.6);
+
+		switch ($Gender) {
+		case 'Female':
+			
+	$query = "SELECT * FROM bedspace_female";
+ 	$select_query = mysqli_query($connection,$query);
+
+	if (mysqli_num_rows($select_query) < $total_bedspace || mysqli_num_rows($select_query) < $bedspace_female_100) {
+		$user_id =$_SESSION['user_id'];    
+		$user_reg = $_SESSION['user_reg'];
+		$user_firstname = $_SESSION['user_firstname'];
+		$user_lastname = $_SESSION['user_lastname'];
+		$user_level = 	$_SESSION['user_level'];	
+
+		$query_con = "SELECT * FROM bedspace_female WHERE user_id = '$user_id'";
+		$confirm_query = mysqli_query($connection,$query_con);
+
+				if (mysqli_num_rows($confirm_query) <= 0) {
+
+					$query = "INSERT INTO bedspace_female (user_id,user_reg,user_firstname,user_lastname,user_level) VALUES('$user_id','$user_reg','$user_firstname','$user_lastname','$user_level')";
+					$insert_query = mysqli_query($connection,$query);
+					
+					header("Location: response_bedspace_allocateSucc.php");
+				}
+				else{
+					header("Location: response_bedspace_allocate.php");
+				}
+
+	
+			}
+			else{
+				header("Location: response_bedspace_allocateNOT.php");
 			}
 
-    	</style>
-    	<div class="content" >
-    	<div class="row">
-    		<div class="col-md-2 cd">
-    			<div class=""  style="color: #000; padding-left: 10px; ">
-    				<br><br>
-    				<h3>Profile Menu</h3>
-						<ul id="">
+			break;
 
-						  <li><a href="undergraduatetasks.php">Profile Page</a></li>
-						  <li>
-							<a href="#">Bedspace Request</a>
-							   <!--  <ul>
-							    	
-				      			  	<li class="ui-state-disabled" title="Fresh students should use this link to request for bedspace"><a href="#"><font color = 'red'>PART 1</font> Freshers BedSpace Request</a></li>
-				      			  	<li class="ui-state-disabled" title="Fresh students should use this link to request for bedspace"><a href="#"><font color = 'red'>DIRECT ENTRY</font> Freshers BedSpace Request</a></li>
-							       <li><a href="bedspaceallocationyear21.php">Part 2 BedSpace Request</a></li>
-							       <li><a href="bedspaceallocationyear31.php">Part 3 BedSpace Request</a></li>
-							       <li><a href="bedspaceallocationyear41.php">Part 4 BedSpace Request</a></li>
-							       <li><a href="bedspaceallocationfinalyear1.php">Final Year BedSpace Request</a></li>
-							    </ul> -->
-						  </li>
-						
-						  
-						  <li><a href="pwchange.php">Change Password</a></li>
-						  <li><a href="signout.php">Sign out</a></li>
-						  <br><br><br><br><br><br><br><br><br>
-						</ul>		
+		case 'Male':
+			
+	$query = "SELECT * FROM bedspace_male";
+ 	$select_query = mysqli_query($connection,$query);
+
+	if (mysqli_num_rows($select_query) < $total_bedspace || mysqli_num_rows($select_query) < $bedspace_male_100) {
+		$user_id =$_SESSION['user_id'];    
+		$user_reg = $_SESSION['user_reg'];
+		$user_firstname = $_SESSION['user_firstname'];
+		$user_lastname = $_SESSION['user_lastname'];
+
+		$query_con = "SELECT * FROM bedspace_male WHERE user_id = '$user_id'";
+		$confirm_query = mysqli_query($connection,$query_con);
+		
+				if (mysqli_num_rows($confirm_query) <= 0) {
+
+					$query = "INSERT INTO bedspace_male (user_id,user_reg,user_firstname,user_lastname,user_level) VALUES('$user_id','$user_reg','$user_firstname','$user_lastname','$user_level')";
+					$insert_query = mysqli_query($connection,$query);
+					header("Location: response_bedspace_allocateSucc.php");
 					
-    			</div>
-						
+				}
+				else{
+					header("Location: response_bedspace_allocate.php");
+				}
+
+	
+			}
+			else{
+				header("Location: response_bedspace_allocateNOT.php");
+			}
+
+
+			break;
+		
+		default:
+			echo "Select the your Gender";
+			break;
+		}
+
+
+	}
+
+
+
+	else {
+
+
+	 $bedspace_female = ceil($total_bedspace * 0.4);
+	 $bedspace_male = ceil($total_bedspace * 0.4);
+
+		switch ($Gender) {
+		case 'Female':
+			
+	$query = "SELECT * FROM bedspace_female";
+ 	$select_query = mysqli_query($connection,$query);
+
+	if (mysqli_num_rows($select_query) <= $bedspace_female) {
+		$user_id =$_SESSION['user_id'];    
+		$user_reg = $_SESSION['user_reg'];
+		$user_firstname = $_SESSION['user_firstname'];
+		$user_lastname = $_SESSION['user_lastname'];
+
+		$query_con = "SELECT * FROM bedspace_female WHERE user_id = '$user_id'";
+		$confirm_query = mysqli_query($connection,$query_con);
+
+				if (mysqli_num_rows($confirm_query) <= 0 ) {
+
+					$query ="INSERT INTO bedspace_female (user_id,user_reg,user_firstname,user_lastname,user_level) VALUES('$user_id','$user_reg','$user_firstname','$user_lastname','$user_level')";
+					$insert_query = mysqli_query($connection,$query);
+					header("Location: response_bedspace_allocateSucc.php");
 					
-				</div>
+				}
+				else{
+					header("Location: response_bedspace_allocate.php");
+				}
+
+	
+			}
+			else{
+				header("Location: response_bedspace_allocateNOT.php");
+			}
+
+			break;
+
+		case 'Male':
+			
+	$query = "SELECT * FROM bedspace_male";
+ 	$select_query = mysqli_query($connection,$query);
+
+	if (mysqli_num_rows($select_query) <= $bedspace_male) {
+		$user_id =$_SESSION['user_id'];    
+		$user_reg = $_SESSION['user_reg'];
+		$user_firstname = $_SESSION['user_firstname'];
+		$user_lastname = $_SESSION['user_lastname'];
+
+		$query_con = "SELECT * FROM bedspace_male WHERE user_id = '$user_id'";
+		$confirm_query = mysqli_query($connection,$query_con);
+		
+				if (mysqli_num_rows($confirm_query) <= 0) {
+
+					$query = "INSERT INTO bedspace_male (user_id,user_reg,user_firstname,user_lastname,user_level) VALUES('$user_id','$user_reg','$user_firstname','$user_lastname','$user_level')";
+					$insert_query = mysqli_query($connection,$query);
+					header("Location: response_bedspace_allocateSucc.php");
+					
+				}
+				else{
+					header("Location: response_bedspace_allocate.php");
+				}
+
+	
+			}
+			else{
+				header("Location: response_bedspace_allocateNOT.php");
+			}
+
+
+			break;
+		
+		default:
+			echo "Select the your Gender";
+			break;
+		}
+
+
+		
+	}
+	 
+
+}
+
+
+
+
+
+
+
+
+
+  ?>
+
+
+    <body>
+       	<div class="content" >
+    	<div class="row">
+    		<?php include "includes\portal_nav.php";  ?>
 
 				<div class="col-md-10">
-				<div style="color: #000; padding-left: 10px; ">
-					<br><br>
+				<div style="color: #000;padding-left: 10px; margin-top: -8%; ">
+					<br><br><br><br><br><br>
 			<div>
 			<hr>
-			<form action="/action_page.php " class=" col-xs-8">
+			<form action="" class=" col-xs-8" method="post">
 				<h3>Apply for bedspace</h3>
 					
 					
 					<div class="form-group">
 					<label >Choose your Gender</label>
-					<select id="" class="form-control">
-					<option>Female</option>
-    	 			<option>Male</option>
+					<select id="" class="form-control" name="gender">
+					<option placeholder = "Select your Gender" value="">Select your Gender</option>
+					<option value="Female">Female</option>
+    	 			<option value="Male">Male</option>
 					</select>
 					</div>
 					
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="submit" name= "submit" class="btn btn-primary">Submit</button>
 				
 			</form>
 		</div>
-		          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	     
+		          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	     
 				</div>
 			</div>
 					
     	</div>
     	
+<?php }
 
+else{
+	header("Location: login.php");
+}
+
+  ?>
     	
 			
 
