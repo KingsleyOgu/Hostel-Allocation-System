@@ -7,9 +7,10 @@
 				</div>
 				<div class="grid_4">
 					<ul>
-						<li><a href="index.php" class=".grid_4_1" style="color: #fff;padding-left: 40px;font-weight: bolder;" >HOMEPAGE</a></li>
-						<div class="grid_12">© 2006 - 2018 Obafemi Awolowo University</div>
+						<li><a href="" class=".grid_4_1" style="color: #fff;padding-left: 40px;font-weight: bolder;" ></a></li>
+						<div class="grid_12" style="color: #fff;">© 2006 - 2018 Obafemi Awolowo University</div>
 					</ul>
+					<br>
 				</div>
 			</div>
 		</footer>
